@@ -1,0 +1,10 @@
+{
+    "name": "app",
+    "type": "module",
+    "scripts": {
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "vite-plugin-inspect-config": "workspace:*"
+    }
+}
