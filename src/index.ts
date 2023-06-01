@@ -8,7 +8,7 @@ export default createUnplugin<Options | undefined>((rawOptions = {}) => {
     const options = resolveOption(rawOptions);
     const filter = createFilter(options.include, options.exclude);
 
-    const name = 'unplugin-starter';
+    const name = 'vite-plugin-inspect-config';
     return {
         name,
         enforce: undefined,

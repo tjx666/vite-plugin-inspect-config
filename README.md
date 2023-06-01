@@ -1,83 +1,25 @@
-# unplugin-starter [![npm](https://img.shields.io/npm/v/unplugin.svg)](https://npmjs.com/package/unplugin)
+# vite-plugin-inspect-config [![npm](https://img.shields.io/npm/v/vite-plugin-inspect-config.svg)](https://npmjs.com/package/vite-plugin-inspect-config)
 
-[![Unit Test](https://github.com/tjx666/unplugin-starter/actions/workflows/unit-test.yml/badge.svg)](https://github.com/tjx666/unplugin-starter/actions/workflows/unit-test.yml)
+[![Unit Test](https://github.com/tjx666/vite-plugin-inspect-config/actions/workflows/unit-test.yml/badge.svg)](https://github.com/tjx666/vite-plugin-inspect-config/actions/workflows/unit-test.yml)
 
-Starter template for [unplugin](https://github.com/unjs/unplugin).
+Inspect vite resolved config with infinite object level
 
 ## Installation
 
 ```bash
-npm i -D unplugin-starter
+npm i -D vite-plugin-inspect-config
 ```
 
-<details>
-<summary>Vite</summary><br>
+## Usage
 
 ```ts
 // vite.config.ts
-import UnpluginStarter from 'unplugin-starter/vite';
+import vitePluginInspectConfig from 'vite-plugin-inspect-config';
 
 export default defineConfig({
-  plugins: [UnpluginStarter()],
+  plugins: [vitePluginInspectConfig()],
 });
 ```
-
-<br></details>
-
-<details>
-<summary>Rollup</summary><br>
-
-```ts
-// rollup.config.js
-import UnpluginStarter from 'unplugin-starter/rollup';
-
-export default {
-  plugins: [UnpluginStarter()],
-};
-```
-
-<br></details>
-
-<details>
-<summary>esbuild</summary><br>
-
-```ts
-// esbuild.config.js
-import { build } from 'esbuild';
-
-build({
-  plugins: [require('unplugin-starter/esbuild')()],
-});
-```
-
-<br></details>
-
-<details>
-<summary>Webpack</summary><br>
-
-```ts
-// webpack.config.js
-module.exports = {
-  /* ... */
-  plugins: [require('unplugin-starter/webpack')()],
-};
-```
-
-<br></details>
-
-<details>
-<summary>Vue CLI</summary><br>
-
-```ts
-// vue.config.js
-module.exports = {
-  configureWebpack: {
-    plugins: [require('unplugin-starter/webpack')()],
-  },
-};
-```
-
-<br></details>
 
 ## License
 
