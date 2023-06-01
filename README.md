@@ -17,7 +17,11 @@ npm i -D vite-plugin-inspect-config
 import vitePluginInspectConfig from 'vite-plugin-inspect-config';
 
 export default defineConfig({
-  plugins: [vitePluginInspectConfig()],
+  plugins: [
+    vitePluginInspectConfig({
+      enable: true,
+    }),
+  ],
 });
 ```
 

@@ -45,6 +45,9 @@
         "release": "bumpp && pnpm publish",
         "prepublishOnly": "pnpm run build"
     },
+    "dependencies": {
+        "picocolors": "^1.0.0"
+    },
     "devDependencies": {
         "@types/node": "^18.16.16",
         "@yutengjing/eslint-config-typescript": "^0.4.1",

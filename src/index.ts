@@ -1,26 +1,32 @@
-import { createFilter } from '@rollup/pluginutils';
-import { createUnplugin } from 'unplugin';
+import { inspect } from 'node:util';
 
-import { resolveOption } from './core/options';
-import type { Options } from './core/options';
+import c from 'picocolors';
+import type { Plugin } from 'vite';
 
-export default createUnplugin<Options | undefined>((rawOptions = {}) => {
-    const options = resolveOption(rawOptions);
-    const filter = createFilter(options.include, options.exclude);
+type ConfigResolvedHook = Extract<NonNullable<Plugin['configResolved']>, Function>;
+type ConfigResolved = Parameters<ConfigResolvedHook>[0];
 
+function serializeConfig(config: ConfigResolved) {
+    return inspect(config, {
+        depth: Number.POSITIVE_INFINITY,
+        colors: true,
+    });
+}
+
+interface Options {
+    enable?: boolean;
+}
+
+export default function vitePluginInspectConfig(options?: Options) {
     const name = 'vite-plugin-inspect-config';
     return {
         name,
-        enforce: undefined,
-
-        transformInclude(id) {
-            return filter(id);
+        enforce: 'post',
+        configResolved(config) {
+            if (options?.enable ?? false) {
+                const badge = c.bgYellow(c.bold('Resolved Config:'));
+                console.info(`${badge}\n${serializeConfig(config)}`);
+            }
         },
-
-        transform(code, id) {
-            console.log(code, id);
-            // eslint-disable-next-line unicorn/no-useless-undefined
-            return undefined;
-        },
-    };
-});
+    } satisfies Plugin;
+}
