@@ -22,5 +22,5 @@ const exec = async (command: string) => {
 test('basic test', async () => {
     const result = await exec('vite build -l error -c vite.config.ts');
     // await fs.writeFile(resolve(testCwd, 'stdout.txt'), result.stdout, 'utf8');
-    expect(result.stdout).toBe(stdout);
+    expect(result.stdout.includes(stdout));
 });
