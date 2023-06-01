@@ -4,6 +4,8 @@
 
 Inspect vite resolved config with infinite object level
 
+![effect](docs/effect.png)
+
 ## Installation
 
 ```bash

@@ -167,7 +167,7 @@
     assetsInlineLimit: [33m4096[39m,
     cssCodeSplit: [33mfalse[39m,
     sourcemap: [33mfalse[39m,
-    rollupOptions: {},
+    rollupOptions: { external: [ [32m'lodash'[39m ] },
     minify: [32m'esbuild'[39m,
     terserOptions: {},
     write: [33mtrue[39m,

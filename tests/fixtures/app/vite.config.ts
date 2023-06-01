@@ -8,5 +8,8 @@ export default defineConfig({
             formats: ['es'],
             entry: 'index.js',
         },
+        rollupOptions: {
+            external: ['lodash'],
+        },
     },
 });
