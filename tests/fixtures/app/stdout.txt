@@ -1,4 +1,4 @@
-Resolved Config:
+[43m[1mResolved Config:[22m[49m
 {
   plugins: [
     {

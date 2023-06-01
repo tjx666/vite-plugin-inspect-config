@@ -12,6 +12,7 @@ const exec = async (command: string) => {
     const result = await execa(cmd, args, {
         cwd: testCwd,
         preferLocal: true,
+        env: { FORCE_COLOR: 'true' },
     });
     return {
         stdout: result.stdout.replaceAll('\r?\n?', '\n'),
@@ -20,5 +21,6 @@ const exec = async (command: string) => {
 
 test('basic test', async () => {
     const result = await exec('vite build -l error -c vite.config.ts');
+    await fs.writeFile(resolve(testCwd, 'stdout.txt'), result.stdout, 'utf8');
     expect(result.stdout).toBe(stdout);
 });
