@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import vitePluginInspectConfig from 'vite-plugin-inspect-config';
 
 export default defineConfig({
-    plugins: [vitePluginInspectConfig({ enable: true })],
+    plugins: [vitePluginInspectConfig({ enable: false })],
     build: {
         lib: {
             formats: ['es'],

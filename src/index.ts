@@ -17,16 +17,35 @@ interface Options {
     enable?: boolean;
 }
 
-export default function vitePluginInspectConfig(options?: Options) {
+export default function vitePluginInspectConfig(options?: Options): Plugin {
     const name = 'vite-plugin-inspect-config';
+    let serializedConfig = 'unresolved';
+
+    const badge = c.bgYellow(c.bold('Resolved Config:'));
+    const printConfig = () => {
+        console.info(`${badge}\n${serializedConfig}`);
+    };
+
+    const onInput = async (input: string) => {
+        if (input === '.') {
+            printConfig();
+        }
+    };
+
     return {
         name,
         enforce: 'post',
+        configureServer(server) {
+            process.stdin.on('data', onInput).setEncoding('utf8').resume();
+            server.httpServer!.on('close', () => {
+                process.stdin.off('data', onInput).pause();
+            });
+        },
         configResolved(config) {
+            serializedConfig = serializeConfig(config);
             if (options?.enable ?? false) {
-                const badge = c.bgYellow(c.bold('Resolved Config:'));
-                console.info(`${badge}\n${serializeConfig(config)}`);
+                printConfig();
             }
         },
-    } satisfies Plugin;
+    };
 }
