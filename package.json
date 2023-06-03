@@ -1,6 +1,6 @@
 {
     "name": "vite-plugin-inspect-config",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "inspect vite resolved config with infinite object level",
     "keywords": [
         "vite",
