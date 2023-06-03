@@ -4,6 +4,9 @@
 
 Inspect vite resolved config with infinite object level
 
+> **NOTE**
+> You can utilize the `DEBUG_DEPTH` [environment variable](https://github.com/debug-js/debug#environment-variables) within the [debug](https://github.com/debug-js/debug) package to output configuration at an infinite depth level.
+
 ![effect](docs/effect.png)
 
 ## Installation
@@ -21,11 +24,17 @@ import vitePluginInspectConfig from 'vite-plugin-inspect-config';
 export default defineConfig({
   plugins: [
     vitePluginInspectConfig({
+      // You can use shortcut `.` to output resolved config when `vite dev`
       enable: true,
     }),
   ],
 });
 ```
+
+## TODOs
+
+- [ ] output rollup, esbuild version
+- [ ] output the pre built packages name
 
 ## License
 
