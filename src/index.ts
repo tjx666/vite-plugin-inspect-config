@@ -19,11 +19,15 @@ interface Options {
 
 export default function vitePluginInspectConfig(options?: Options): Plugin {
     const name = 'vite-plugin-inspect-config';
-    let serializedConfig = 'unresolved';
+    let configStr: string | undefined;
+    let configResolved: ConfigResolved | undefined;
 
     const badge = c.bgYellow(c.bold('Resolved Config:'));
     const printConfig = () => {
-        console.info(`${badge}\n${serializedConfig}`);
+        if (configStr === undefined && configResolved) {
+            configStr = serializeConfig(configResolved);
+        }
+        console.info(`${badge}\n${configStr}`);
     };
 
     const onInput = async (input: string) => {
@@ -42,7 +46,7 @@ export default function vitePluginInspectConfig(options?: Options): Plugin {
             });
         },
         configResolved(config) {
-            serializedConfig = serializeConfig(config);
+            configResolved = config;
             if (options?.enable ?? false) {
                 printConfig();
             }
